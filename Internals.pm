@@ -21,9 +21,9 @@ require DynaLoader;
 
 @EXPORT = qw();
 
-@EXPORT_OK = qw(SetReadOnly SetReadWrite GetRefCount SetRefCount);
+@EXPORT_OK = qw(IsWriteProtected SetReadOnly SetReadWrite GetRefCount SetRefCount);
 
-$VERSION = '1.0';
+$VERSION = '1.1';
 
 %EXPORT_TAGS = (all => [@EXPORT_OK]);
 
@@ -39,7 +39,7 @@ Internals - Write-protect variables, manipulate refcounts
 
 =head1 SYNOPSIS
 
-  use Internals qw(SetReadOnly SetReadWrite GetRefCount SetRefCount);
+  use Internals qw(IsWriteProtected SetReadOnly SetReadWrite GetRefCount SetRefCount);
 
   use Internals qw(:all);
 
@@ -48,6 +48,8 @@ Internals - Write-protect variables, manipulate refcounts
   SetReadOnly($object);
 
   SetReadWrite($object);
+
+  if (IsWriteProtected($object)) { ... }
 
   $value = GetRefCount($object);
 
@@ -65,13 +67,15 @@ or
 
   $object->SetReadWrite();
 
+  if ($object->IsWriteProtected()) { ... }
+
   $value = $object->GetRefCount();
 
   $object->SetRefCount($value);
 
 or
 
-  use Internals qw(SetReadOnly SetReadWrite GetRefCount SetRefCount);
+  use Internals qw(IsWriteProtected SetReadOnly SetReadWrite GetRefCount SetRefCount);
 
   use Internals qw(:all);
 
@@ -100,8 +104,8 @@ perform the desired action, you always have to pass
 a reference to the variable or data structure in
 question.
 
-This comes in handy for objects, where you already
-have a reference anyway!
+This comes in handy for objects and anonymous data
+structures, where you only have a reference anyway!
 
 BEWARE: This module is DANGEROUS!
 
@@ -110,13 +114,13 @@ DO NOT attempt to unlock Perl's built-in variables!
 DO NOT manipulate reference counts unless you know
 exactly what you're doing!
 
-ANYTHING might happen! Hell might break loose!
+ANYTHING might happen! Hell might break loose! C<:-)>
 
 YOU HAVE BEEN WARNED!
 
 =head1 VERSION
 
-This man page documents "Internals" version 1.0.
+This man page documents "Internals" version 1.1.
 
 =head1 AUTHOR
 

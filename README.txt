@@ -1,6 +1,6 @@
 
     ===================
-      "Internals" 1.0
+      "Internals" 1.1
     ===================
 
 
@@ -39,8 +39,8 @@ perform the desired action, you always have to pass
 a reference to the variable or data structure in
 question.
 
-This comes in handy for objects, where you already
-have a reference anyway!
+This comes in handy for objects and anonymous data
+structures, where you only have a reference anyway!
 
 BEWARE: This module is DANGEROUS!
 
@@ -49,7 +49,7 @@ DO NOT attempt to unlock Perl's built-in variables!
 DO NOT manipulate reference counts unless you know
 exactly what you're doing!
 
-ANYTHING might happen! Hell might break loose!
+ANYTHING might happen! Hell might break loose! :-)
 
 YOU HAVE BEEN WARNED!
 

@@ -34,6 +34,21 @@ PROTOTYPES: DISABLE
 
 
 void
+IsWriteProtected(ref)
+SV *	ref
+PPCODE:
+{
+    SV *obj;
+
+    if ( INTERNALS_REFERENCE(ref,obj) )
+    {
+        PUSHs(sv_2mortal(newSViv((IV)( SvREADONLY(obj) ? 1 : 0 ))));
+    }
+    else INTERNALS_NO_REFERENCE("IsWriteProtected");
+}
+
+
+void
 SetReadOnly(ref)
 SV *	ref
 PPCODE:
